@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "01. Raw to Landing"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4082446b-1098-b4c7-4245-722045139d03"
+  }
+}

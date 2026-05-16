@@ -1,0 +1,43 @@
+table dim_course
+	lineageTag: 541afb5e-ca19-49a9-b325-603dc592dbe8
+	sourceLineageTag: [dbo].[dim_course]
+
+	column Course_ID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f0e5a974-7a74-4ce3-9d90-81da2eedddcb
+		sourceLineageTag: Course_ID
+		summarizeBy: none
+		sourceColumn: Course_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Course_Name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f2414c66-c4af-41e7-bf12-dac67428b5ea
+		sourceLineageTag: Course_Name
+		summarizeBy: none
+		sourceColumn: Course_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grade_Level
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3fa6d3f3-8083-4dc4-8357-084cbb8c215b
+		sourceLineageTag: Grade_Level
+		summarizeBy: none
+		sourceColumn: Grade_Level
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_course = entity
+		mode: directLake
+		source
+			entityName: dim_course
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

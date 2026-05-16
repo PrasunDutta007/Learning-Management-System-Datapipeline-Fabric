@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "01. Raw to Landing"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3e20b2e0-5ca1-a29b-4bd1-9b396fb61f3d"
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "InvokePipeline",
+        "typeProperties": {
+          "parameters": {},
+          "waitOnCompletion": true,
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "pipelineId": "3e20b2e0-5ca1-a29b-4bd1-9b396fb61f3d",
+          "operationType": "InvokeFabricPipeline"
+        },
+        "externalReferences": {
+          "connection": "43089b77-58f6-4642-81bb-bbadf6bc6964"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Raw to Landing",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "65f28d91-561d-8eb2-437d-f291c9ace091",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "today_date": {
+              "value": "2026-05-17",
+              "type": "string"
+            },
+            "workspace": {
+              "value": "fabric_DEV",
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Landing to Bronze",
+        "dependsOn": [
+          {
+            "activity": "Raw to Landing",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "7e06cbaa-2218-9e43-4578-ed3f12c07872",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "today_date": {
+              "value": "2026-05-17",
+              "type": "string"
+            },
+            "workspace": {
+              "value": "fabric_DEV",
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Silver Transform",
+        "dependsOn": [
+          {
+            "activity": "Landing to Bronze",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "0b56e153-1ffc-8977-443e-4d5ba6c27691",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "today_date": {
+              "value": "2026-05-17",
+              "type": "string"
+            },
+            "workspace": {
+              "value": "fabric_DEV",
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Gold Layer",
+        "dependsOn": [
+          {
+            "activity": "Silver Transform",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

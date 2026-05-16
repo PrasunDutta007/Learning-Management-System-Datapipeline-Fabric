@@ -1,0 +1,8 @@
+relationship b338f7f0-e837-9286-e6ec-7ee21ffe2334
+	fromColumn: fact_student_performance.Course_ID
+	toColumn: dim_course.Course_ID
+
+relationship f132bc94-b18a-1c58-fa78-9b47a33f8568
+	fromColumn: fact_student_performance.Student_ID
+	toColumn: dim_student.Student_ID
+
